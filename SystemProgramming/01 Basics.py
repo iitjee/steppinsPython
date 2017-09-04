@@ -55,9 +55,10 @@ directory processing tools.
 
 Some handy tools to know about various modules:
   1. import myModule
-     sys(myModule)      #returns a list of all attributes of myModule (sub-modules it exports is mainly of our interest)
+     dir(myModule)      #returns a list of all attributes of myModule (sub-modules it exports is mainly of our interest)
+  
   2. myModule.__doc__
-(note: since __doc__ is an attribute, you can actually seen in sys(myModule) )
+(note: since __doc__ is an attribute, you can actually seen in dir(myModule) )
     
    3. myModule.__doc__ gives one huge line with special characters in between and therefore not so readable. So you can 
    format this string with `print(myModule.__doc__)`
