@@ -53,7 +53,8 @@ A subtle point: the child process function is also careful to exit explicitly wi
  rerun, you’ll likely have to type more than one q to stop, because multiple processes are running in the parent function.
  
  
-in above eg, each process exits very soon after it starts, so there’s little overlap in time. Let’s do something slightly more sophisticated to better illustrate multiple forked processes running in parallel. 
+in above eg, each process exits very soon after it starts, so there’s little overlap in time. Let’s do something slightly 
+more sophisticated to better illustrate multiple forked processes running in parallel. 
 
 """
 fork basics: start 5 copies of this program running in parallel with the original; each copy counts up to 5 on the same 
@@ -80,8 +81,14 @@ def counter(count):
 	# else in child/new process # run function and exit
 	# parent need not wait
  
-When run, this script starts 5 processes immediately and exits. All 5 forked processes check in with their first count display one second later and every second thereafter. Notice that child processes continue to run, even if the parent process that created them terminates:
- The output of all of these processes shows up on the same screen, because all of them share the standard output stream (and a system prompt may show up along the way, too). 
+When run, this script starts 5 processes immediately and exits. All 5 forked processes check in with their first count 
+display one second later and every second thereafter. Notice that child processes continue to run, even if the parent 
+process that created them terminates:
+ The output of all of these processes shows up on the same screen, because all of them share the standard output stream (and 
+a system prompt may show up along the way, too). 
  
- Technically, a forked process gets a copy of the original process’s global memory, including open file descriptors. Because of that, global objects like files start out with the same values in a child process, so all the processes here are tied to the same single stream. But it’s important to remember that global memory is copied, not shared; if a child process changes a global object, it changes only its own copy. (As we’ll see, this works differently in threads,
+ Technically, a forked process gets a copy of the original process’s global memory, including open file descriptors. Because 
+of that, global objects like files start out with the same values in a child process, so all the processes here are tied to 
+the same single stream. But it’s important to remember that global memory is copied, not shared; if a child process changes 
+a global object, it changes only its own copy. (As we’ll see, this works differently in threads,
  
